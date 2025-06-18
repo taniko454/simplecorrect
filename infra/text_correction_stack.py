@@ -2,6 +2,7 @@ from pathlib import Path
 from aws_cdk import (
     Duration, RemovalPolicy, CfnOutput,
     aws_s3 as s3,
+    aws_s3_deployment as s3deploy,
     aws_lambda as _lambda,
     aws_s3_notifications as s3n,
     aws_iam as iam,
@@ -9,6 +10,7 @@ from aws_cdk import (
     aws_cloudfront as cf,
     aws_cloudfront_origins as origins,
 )
+from aws_cdk.aws_cloudfront import OriginAccessIdentity
 import aws_cdk as cdk
 
 PROJECT_ROOT = Path(__file__).parent
@@ -95,12 +97,17 @@ class TextCorrectionStack(cdk.Stack):
             apigw.LambdaIntegration(presign_fn, proxy=True),
         )
 
-        # ---------- CloudFront (静的サイト) ----------
+        # ---------- CloudFront + OAI (静的サイト) ----------
+        oai = OriginAccessIdentity(self, "SiteOAI",
+            comment="Enable CloudFront to fetch from S3"
+        )
+        bucket.grant_read(oai.grant_principal)
+        
         distribution = cf.Distribution(
             self, "FrontendDist",
             default_root_object="index.html",
             default_behavior=cf.BehaviorOptions(
-                origin=origins.S3Origin(bucket),
+                origin=origins.S3Origin(bucket, origin_access_identity=oai),
                 cache_policy=cf.CachePolicy.CACHING_DISABLED,
                 viewer_protocol_policy=cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             ),
