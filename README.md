@@ -19,7 +19,7 @@ cd infra
 cdk bootstrap aws://$(aws sts get-caller-identity --query Account --output text)/$AWS_REGION
 cdk deploy --all
 
-STACK=TextCorrectStack
+STACK=TextCorrectionStack
 API_URL=$(aws cloudformation describe-stacks --stack-name $STACK --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue" --output text)
 sed -i "s|__API_ENDPOINT__|${API_URL}|g" ../frontend/index.html
 cdk deploy --all
