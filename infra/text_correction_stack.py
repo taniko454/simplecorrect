@@ -115,7 +115,7 @@ class TextCorrectionStack(cdk.Stack):
 
         s3deploy.BucketDeployment(self, "DeployWebsite",
             sources=[s3deploy.Source.asset(str(PROJECT_ROOT.parent / "frontend"))],
-            destination_nucket=bucket,
+            destination_bucket=bucket,
             distribution=distribution,
             distribution_paths=["/*"],
         )
