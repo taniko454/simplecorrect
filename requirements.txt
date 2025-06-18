@@ -1,0 +1,4 @@
+boto3
+aws-cdk-lib==2.*
+constructs>=10,<11
+aws-cdk.aws-lambda-python-alpha
