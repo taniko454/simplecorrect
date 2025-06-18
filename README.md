@@ -1,4 +1,4 @@
-# My Text Summarizer (Bedrock + CDK)
+# Text Correction (Bedrock + CDK)
 
 CloudShell だけでデプロイできる “テキスト校正アプリ” のサンプルです。  
 アップロードしたテキストを **Amazon Bedrock – Nova Micro** に渡して要約し、ダウンロード可能なテキストファイルを生成します。
