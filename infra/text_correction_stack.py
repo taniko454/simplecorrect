@@ -113,6 +113,13 @@ class TextCorrectionStack(cdk.Stack):
             ),
         )
 
+        s3deploy.BucketDeployment(self, "DeployWebsite",
+            sources=[s3deploy.Source.asset(str(PROJECT_ROOT.parent / "frontend"))],
+            destination_nucket=bucket,
+            distribution=distribution,
+            distribution_paths=["/*"],
+        )
+
         # ---------- CDK Outputs ----------
         CfnOutput(self, "FrontendURL", value=f"https://{distribution.domain_name}")
         CfnOutput(self, "ApiEndpoint", value=api.url)
