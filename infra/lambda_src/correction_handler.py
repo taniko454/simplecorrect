@@ -27,7 +27,7 @@ def handler(event, _):
         )
         correction = resp["output"]["message"]["content"][0]["text"]
 
-        out_key = key.replace("uploads/", "outputs/") + "correction.txt"
+        out_key = "outputs/correction.txt"
         s3.put_object(Bucket=bucket, Key=out_key,
                       Body=correction.encode("utf-8"),
                       ContentType="text/plain")
