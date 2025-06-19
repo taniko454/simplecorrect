@@ -1,9 +1,9 @@
 # Text Correction (Bedrock + CDK)
 
-CloudShell だけでデプロイできる “テキスト校正アプリ” のサンプルです。  
-アップロードしたテキストを **Amazon Bedrock – Nova Micro** に渡して要約し、ダウンロード可能なテキストファイルを生成します。
+CloudShell でデプロイできる “テキスト校正アプリ” のサンプルです。  
+アップロードしたテキストを **Amazon Bedrock – Nova Micro** に渡して校正し、ダウンロード可能なテキストファイルを生成します。
 
-## デプロイ手順（要: us-east-1 もしくは us-west-2）
+## デプロイ手順
 
 ```bash
 # CloudShell
