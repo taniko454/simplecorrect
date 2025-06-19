@@ -70,7 +70,7 @@ def _resp(code: int, body: dict):
         "headers": {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "ture"
+            "Access-Control-Allow-Credentials": "true"
         },
         "body": json.dumps(body, ensure_ascii=False),
     }
