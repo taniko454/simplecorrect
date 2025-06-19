@@ -15,13 +15,15 @@ cd simplecorrect
 
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-
 sudo npm install -g aws-cdk@latest
+
 export AWS_REGION=us-east-1        # Nova Micro 対応リージョン
+
 cd infra
 cdk bootstrap aws://$(aws sts get-caller-identity --query Account --output text)/$AWS_REGION
 cdk deploy --all
 
+# API エンドポイントをコードに直接書き込んで再度デプロイ
 STACK=TextCorrectionStack
 API_URL=$(aws cloudformation describe-stacks --stack-name $STACK --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue" --output text)
 sed -i "s|__API_ENDPOINT__|${API_URL}|g" ../frontend/index.html
