@@ -26,7 +26,7 @@ startBtn.addEventListener('click', async () => {
   // 2) PUT アップロード
   await fetch(url, { method: 'PUT', body: selectedFile });
 
-  statusP.textContent = '要約中 (完了まで数十秒)…';
+  statusP.textContent = '校正中......';
   pollForResult(key);
 });
 
