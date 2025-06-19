@@ -16,7 +16,7 @@ def handler(event, _):
         obj = s3.get_object(Bucket=bucket, Key=key)
         text = obj["Body"].read().decode()
 
-        user_message = f"要約してください。\n\n{text}"
+        user_message = f"次に示す文章から、「あー」「えー」などのフィラーを削除したものを、【Start】【End】で括って出力してください。\n\n{text}"
         resp = bedrock.converse(
                 modelId=MODEL_ID,
                 messages=[{
