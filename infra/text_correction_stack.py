@@ -35,7 +35,7 @@ class TextCorrectionStack(cdk.Stack):
             versioned=False,
         )
 
-        # ---------- Lambda: 要約処理 ----------
+        # ---------- Lambda: 校正処理 ----------
         correction_fn = _lambda.Function(
             self, "CorrectionFn",
             runtime=_lambda.Runtime.PYTHON_3_11,
