@@ -47,7 +47,7 @@ def handler(event, _):
         if not key:
             return _resp(400, {"message": "key required"})
 
-        out_key = key.replace("uploads/", "outputs/") + ".summary.txt"
+        out_key = key.replace("uploads/", "outputs/") + "correction.txt"
         try:
             # 存在チェック
             s3.head_object(Bucket=BUCKET, Key=out_key)
