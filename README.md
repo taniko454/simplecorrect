@@ -7,6 +7,9 @@ CloudShell だけでデプロイできる “テキスト校正アプリ” の�
 
 ```bash
 # CloudShell
+mkdir /tmp/project
+cd /tmp/project
+
 git clone https://github.com/nkknj/simplecorrect.git
 cd simplecorrect
 
