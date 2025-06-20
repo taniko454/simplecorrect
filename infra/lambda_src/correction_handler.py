@@ -7,7 +7,7 @@ s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime", region_name=BEDROCK_REGION)
 
 def split_text_into_chunks(text, chunk_size=1500):
-    # textを句点で分割し、かあrの要素は除去する
+    # textを句点で分割し、空の要素は除去する
     sentences = [s for s in text.split('。') if s]
 
     chunks = []
