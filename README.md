@@ -31,7 +31,7 @@ STACK=TextCorrectionStack
 API_URL=$(aws cloudformation describe-stacks --stack-name $STACK --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue" --output text)
 sed -i "s|__API_ENDPOINT__|${API_URL}|g" ../frontend/index.html
 cdk deploy --all
-'''
+```
 
 表示されたFrontendURLにアクセスし、テキストファイルをアップロードすると、校正されたファイルがダウンロード可能な形で提供されます。
 
