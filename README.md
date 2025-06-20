@@ -13,7 +13,7 @@ CloudShell でデプロイできる “テキスト校正アプリ” です。
 mkdir /tmp/project
 cd /tmp/project
 
-git clone https://github.com/nkknj/simplecorrect.git
+git clone https://github.com/taniko454/simplecorrect.git
 cd simplecorrect
 
 python3 -m venv .venv && source .venv/bin/activate
