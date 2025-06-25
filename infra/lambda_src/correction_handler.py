@@ -6,7 +6,7 @@ MODEL_ID = "amazon.nova-micro-v1:0"
 s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime", region_name=BEDROCK_REGION)
 
-def split_text_into_chunks(text, chunk_size=1500):
+def split_text_into_chunks(text, chunk_size=600):
     # textを句点で分割し、空の要素は除去する
     sentences = [s for s in text.split('。') if s]
 
@@ -54,7 +54,7 @@ def handler(event, _):
                     "role": "user",
                     "content": [{"text": user_message}]
                 }],
-                inferenceConfig={"maxTokens": 2000},
+                inferenceConfig={"maxTokens": 800},
             )
             correction = resp["output"]["message"]["content"][0]["text"]
 
