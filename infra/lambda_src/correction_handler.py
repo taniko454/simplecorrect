@@ -27,7 +27,7 @@ def split_text_into_chunks(text, chunk_size=1500):
                 current_chunk = sentence
 
     if current_chunk:
-        chunks.append(current_chunks.strip() + '。')
+        chunks.append(current_chunk.strip() + '。')
 
     return chunks
 
@@ -47,7 +47,7 @@ def handler(event, _):
 
         for chunk in chunks:
             #チャンクごとにプロンプトを作成
-            user_message = f"次に示す文章から、「あー」「えー」などのフィラーを削除したものを、【Start】【End】で括って出力してください。\n\n{text}"
+            user_message = f"次に示す文章から、「あー」「えー」などのフィラーを削除したものを、【Start】【End】で括って出力してください。\n\n{chunk}"
             resp = bedrock.converse(
                 modelId=MODEL_ID,
                 messages=[{
@@ -67,5 +67,5 @@ def handler(event, _):
 
         out_key = "outputs/correction.txt"
         s3.put_object(Bucket=bucket, Key=out_key,
-                      Body=correction.encode("utf-8"),
+                      Body=final_correction.encode("utf-8"),
                       ContentType="text/plain")
